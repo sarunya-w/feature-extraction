@@ -21,8 +21,8 @@ def timestamp(tt=time.time()):
 
 def normLBP(images_file):
     METHOD = 'uniform'
-    R = 1 #radius
-    P = 8 #n_points
+    R = 2 #radius
+    P = 16 #n_points
     img = np.array(images_file)
     f = ft.local_binary_pattern(img, P, R, METHOD)
 

@@ -19,6 +19,7 @@ c.block = True
 ##create direct view
 dview = c.direct_view()
 dview.block = True
+dview.execute('import os;os.chdir("~/Github/feature-extracton")')
 
 #global 
 dsetname = './train(1)'
@@ -59,12 +60,12 @@ if __name__ == '__main__':
     #    images_files = [a[0] for a in xarray]
     #    class_files = [a[1] for a in xarray]
     dsetname = dsetname.split("/")
+    dview.execute("from fftengine import *")
+    dview['images_files']=images_files
+    dview['class_files']=class_files
+    dview['isTrain']=isTrain
+    dview['sampling']=sampling
     for i in xrange(dset):
-        dview.execute("from hogengine import *")
-        dview['images_files']=images_files
-        dview['class_files']=class_files
-        dview['isTrain']=isTrain
-        dview['sampling']=sampling
         ts=time.time()
         dview.execute("vs ,cs ,pos = getVector(images_files,class_files,sampling,isTrain)")
         ts=timestamp(ts)
